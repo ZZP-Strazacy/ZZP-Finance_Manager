@@ -1,0 +1,19 @@
+# Dependencies
+frontend/node_modules/
+
+# Build outputs
+frontend/dist/
+backend/target/
+
+# Local dev
+CLAUDE.md
+.env
+.env.local
+
+# OS
+.DS_Store
+
+# IDE
+.idea/
+*.iml
+.vscode/
