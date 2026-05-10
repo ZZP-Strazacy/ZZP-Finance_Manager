@@ -9,6 +9,7 @@ backend/target/
 CLAUDE.md
 .env
 .env.local
+frontend/.env.development
 
 # OS
 .DS_Store

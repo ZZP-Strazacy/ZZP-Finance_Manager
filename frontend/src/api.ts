@@ -1,6 +1,6 @@
 import type { Expense, MonthlySummary, CategoryBreakdown } from './types';
 
-const BASE = 'http://localhost:8080/api/expenses';
+const BASE = import.meta.env.VITE_API_URL ?? '/api/expenses';
 
 async function request<T>(url: string, options?: RequestInit): Promise<T> {
   const res = await fetch(url, { credentials: 'include', ...options });
