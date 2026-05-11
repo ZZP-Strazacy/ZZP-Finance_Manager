@@ -122,6 +122,32 @@ class ExpenseServiceTest {
         assertThat(breakdown.get("Transport")).isEqualTo(30.0);
     }
 
+        @Test
+    void updateUnknownId_shouldThrow() {
+        Expense updated = expense(99.0, "Food", LocalDate.of(2025, 5, 1));
+        assertThatThrownBy(() -> service.update("nonexistent", updated, request, response))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void addMultipleExpenses_shouldAllAppearInList() {
+        service.add(expense(10.0, "Food", LocalDate.of(2025, 5, 1)), request, response);
+        syncCookies();
+        service.add(expense(20.0, "Transport", LocalDate.of(2025, 5, 2)), request, response);
+        syncCookies();
+
+        assertThat(service.getAll(request)).hasSize(2);
+    }
+
+    @Test
+    void filterByCategory_caseInsensitive_shouldMatch() {
+        service.add(expense(25.0, "Food", LocalDate.of(2025, 5, 1)), request, response);
+        syncCookies();
+
+        List<Expense> filtered = service.getFiltered("food", null, null, request);
+        assertThat(filtered).hasSize(1);
+    }
+
     // Copies cookies from response back to next request to simulate browser behaviour
     private void syncCookies() {
         jakarta.servlet.http.Cookie[] cookies = response.getCookies();
