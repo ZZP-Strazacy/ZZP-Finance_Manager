@@ -1,35 +1,55 @@
-# Finance Manager
+# 💰 Finance Manager
 
-A simple web application for tracking personal expenses. Users can add, edit, and delete expenses, filter them by category or date, and view monthly summaries broken down by category.
+> A lightweight web app for tracking personal expenses — add, edit, delete, filter, and summarize your spending with ease.
 
-## Tech stack
+---
 
-- **Frontend:** React, Bootstrap CSS
-- **Backend:** Spring Boot (Java 21)
-- **Storage:** Browser cookies / localStorage (no database)
+## 🛠️ Tech Stack
 
-## Features
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React + Bootstrap CSS |
+| Backend | Spring Boot (Java 21) |
+| Storage | Browser localStorage / cookies |
 
-- Add, edit, and delete expenses (amount, category, date, description)
-- Filter expenses by category and date range
-- Monthly expense summary
-- Category breakdown view
+---
 
-## Project structure
+## ✨ Features
+
+- ➕ Add, ✏️ edit, and 🗑️ delete expenses (amount, category, date, description)
+- 🔍 Filter expenses by category and date range
+- 📅 Monthly expense summary
+- 📊 Category breakdown view
+
+---
+
+## 📁 Project Structure
 
 ```
 ZZP-Finance_Manager/
-├── frontend/    # React app (Vite)
-├── backend/     # Spring Boot app
+├── frontend/          # React app (Vite)
+├── backend/           # Spring Boot app
 └── docker-compose.yml
 ```
 
-## Running locally
+---
+
+## 🚀 Running Locally
 
 ### Prerequisites
+
 - Node.js 20+
 - Java 21
-- Maven
+- Maven 3.9+
+
+### Backend
+
+```bash
+cd backend
+mvn spring-boot:run
+```
+
+API available at **http://localhost:8080**
 
 ### Frontend
 
@@ -39,34 +59,38 @@ npm install
 npm run dev
 ```
 
-App available at `http://localhost:5173`
+App available at **http://localhost:5173**
 
-### Backend
+> **Note:** When running locally, the frontend proxies API requests to the backend on port 8080. Make sure the backend is running before starting the frontend.
 
-```bash
-cd backend
-JAVA_HOME=$(/usr/libexec/java_home -v 21) mvn spring-boot:run
-```
+---
 
-API available at `http://localhost:8080`
-
-## Running with Docker
+## 🐳 Running with Docker
 
 ### Prerequisites
+
 - Docker
 - Docker Compose
 
-### Start the full stack
+### Start
 
 ```bash
 docker compose up --build
 ```
 
-- Frontend: `http://localhost`
-- Backend: `http://localhost:8080`
+| Service | URL |
+|---------|-----|
+| Frontend | http://localhost |
+| Backend | http://localhost:8080 |
 
 ### Stop
 
 ```bash
 docker compose down
 ```
+
+---
+
+## 👥 Contributors
+
+Made with ☕ by [ZZP-Strazacy](https://github.com/ZZP-Strazacy)
