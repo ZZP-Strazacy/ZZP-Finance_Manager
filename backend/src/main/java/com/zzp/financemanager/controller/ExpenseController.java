@@ -38,9 +38,15 @@ public class ExpenseController {
 
     @PostMapping
     public ResponseEntity<Expense> add(@RequestBody Expense expense,
-                                       HttpServletRequest request,
-                                       HttpServletResponse response) {
+                                    HttpServletRequest request,
+                                    HttpServletResponse response) {
         if (expense.getAmount() <= 0) {
+            return ResponseEntity.badRequest().build();
+        }
+        if (expense.getDate() == null || expense.getDate().isAfter(LocalDate.now())) {
+            return ResponseEntity.badRequest().build();
+        }
+        if (expense.getDescription() == null || expense.getDescription().trim().isEmpty()) {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(expenseService.add(expense, request, response));
@@ -48,10 +54,16 @@ public class ExpenseController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Expense> update(@PathVariable String id,
-                                          @RequestBody Expense expense,
-                                          HttpServletRequest request,
-                                          HttpServletResponse response) {
+                                        @RequestBody Expense expense,
+                                        HttpServletRequest request,
+                                        HttpServletResponse response) {
         if (expense.getAmount() <= 0) {
+            return ResponseEntity.badRequest().build();
+        }
+        if (expense.getDate() == null || expense.getDate().isAfter(LocalDate.now())) {
+            return ResponseEntity.badRequest().build();
+        }
+        if (expense.getDescription() == null || expense.getDescription().trim().isEmpty()) {
             return ResponseEntity.badRequest().build();
         }
         try {

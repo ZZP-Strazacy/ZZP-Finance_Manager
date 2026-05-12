@@ -29,15 +29,28 @@ export default function ExpenseForm({ existing, onSaved }: Props) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+
     const parsed = parseFloat(amount);
     if (isNaN(parsed) || parsed <= 0) {
       setError('Amount must be greater than 0.');
       return;
     }
+
     if (!date) {
       setError('Date is required.');
       return;
     }
+
+    if (new Date(date) > new Date()) {
+      setError('Date cannot be in the future.');
+      return;
+    }
+
+    if (!description.trim()) {
+      setError('Description is required.');
+      return;
+    }
+
     const payload = { amount: parsed, category, date, description };
     try {
       if (existing) {
